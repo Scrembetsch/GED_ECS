@@ -13,9 +13,9 @@ RandomNumberGenerator::RandomNumberGenerator()
 int RandomNumberGenerator::generateInt(int min, int max)
 {
 	assert(max >= min);
-	
+
 	const auto range = (max - min) + 1;
-	
+
 	if (range <= 0)
 	{
 		return min;
@@ -34,7 +34,7 @@ float RandomNumberGenerator::generateFloat(float min, float max)
 	{
 		return min;
 	}
-	
+
 	const auto randVal = static_cast<float>(std::rand()) / static_cast<float>(RAND_MAX);
 	return min + randVal * range;
 }

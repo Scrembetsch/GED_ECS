@@ -1,7 +1,7 @@
 #include "MovingCircleEntity.h"
 
 #include "TextureManager.h"
-#include "VectorMath.h" 
+#include "VectorMath.h"
 
 MovingCircleEntity::MovingCircleEntity(const sf::Vector2f& position, float radius, const sf::Color& color, const sf::Vector2f& velocity, const sf::Rect<float>& worldBounds)
 	: _position(position), _radius(radius), _color(color), _velocity(velocity)

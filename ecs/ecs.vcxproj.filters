@@ -23,6 +23,15 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="MovementSystem.cpp">
+      <Filter>S</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderCircleSystem.cpp">
+      <Filter>S</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderTextSystem.cpp">
+      <Filter>S</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Entities">
@@ -30,6 +39,15 @@
     </Filter>
     <Filter Include="Helpers">
       <UniqueIdentifier>{27002b94-2cb3-4378-a4f8-79177b7c372b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C">
+      <UniqueIdentifier>{471e2362-3fd4-4c74-a180-858d73a9b57d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="S">
+      <UniqueIdentifier>{096600e4-89ff-4519-a59d-53969f7f6e5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{ad8919ae-78e8-4586-abc1-ab1e40951253}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +74,49 @@
     </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionComponent.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionComponent.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>S</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderCircleSystem.h">
+      <Filter>S</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h" />
+    <ClInclude Include="ComponentManger.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Coordinatorh.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentArray.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>S</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderTextSystem.h">
+      <Filter>S</Filter>
+    </ClInclude>
+    <ClInclude Include="TextComponent.h">
+      <Filter>C</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
