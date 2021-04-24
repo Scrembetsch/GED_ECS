@@ -24,7 +24,7 @@ public:
     {
         assert(!Helper::find(mEntityToIndexMap, entity) && "Component added to same entity more than once.");
 
-        // Put new entry at the end and update the maps
+        // Put new entry at the end and update the mappings
         size_t newIndex = mSize;
         if (mEntityToIndexMap.size() <= entity)
         {
@@ -53,7 +53,7 @@ public:
         size_t indexOfLastElement = mSize - 1;
         mComponentArray[indexOfRemovedEntity] = mComponentArray[indexOfLastElement];
 
-        // Update map to point to moved spot
+        // Update mappings to point to moved spot
         Entity entityOfLastElement = mIndexToEntityMap[indexOfLastElement];
         mEntityToIndexMap[entityOfLastElement] = indexOfRemovedEntity;
         mIndexToEntityMap[indexOfRemovedEntity] = entityOfLastElement;

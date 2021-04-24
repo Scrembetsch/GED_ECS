@@ -18,19 +18,21 @@ int main()
 {
     const unsigned int windowWidth = 1024;
     const unsigned int windowHeight = 768;
-    // const unsigned int numEntities = 52500;  // Anja
-    const unsigned int numEntities = 170000;    // Harald
+    const unsigned int numEntities = 52500;  // Anja
+    //const unsigned int numEntities = 170000;    // Harald
     const sf::Rect<float> bounds(0.f, 0.f, windowWidth, windowHeight);
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "ECS Moving Circles");
 
-    gCoordinator.Init();
+    gCoordinator.Init();    // Coordinator handels communication between the managers (Entity-, Component- and Systemmanager)
 
+    // Register Components
     gCoordinator.RegisterComponent<Transform>();
     gCoordinator.RegisterComponent<Motion>();
     gCoordinator.RegisterComponent<Collision>();
     gCoordinator.RegisterComponent<Sprite>();
     gCoordinator.RegisterComponent<Text>();
 
+    // Register Systems
     auto movementSystem = gCoordinator.RegisterSystem<MovementSystem>();
     {
         Signature sig;
@@ -57,12 +59,13 @@ int main()
 
     std::vector<Entity> entities(numEntities);
 
+    // Moving Circles
     for (auto& entity : entities)
     {
         auto& rng = RandomNumberGenerator::getInstance();
 
-        // create the entity with random color, radius, and velocity
-        // always start from center position
+        // Create the entity with random color, radius, and velocity
+        // Always start from center position
         Transform transform;
         transform.Position.x = (bounds.left + bounds.width) / 2.f;
         transform.Position.y = (bounds.top + bounds.height) / 2.f;
@@ -86,6 +89,7 @@ int main()
             std::make_pair(sf::Vector2f(1.f, 0.f), bounds.left)
         };
 
+        // Add Components
         entity = gCoordinator.CreateEntity();
         gCoordinator.AddComponent<Transform>(entity, transform);
         gCoordinator.AddComponent<Collision>(entity, collision);
@@ -93,6 +97,7 @@ int main()
         gCoordinator.AddComponent<Motion>(entity, motion);
     }
 
+    // Text(Stats) Display
     Entity stats = gCoordinator.CreateEntity();
     Text text;
     text.Font.loadFromFile("fonts/JetBrainsMono-Regular.ttf");

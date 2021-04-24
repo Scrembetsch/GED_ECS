@@ -19,10 +19,10 @@ void MovementSystem::Update(const sf::Time& dt)
 		const auto& collision = gCoordinator.GetComponent<Collision>(entity);
 		auto& motion = gCoordinator.GetComponent<Motion>(entity);
 
-		// calculate the next position
+		// Calculate the next position
 		auto nextPosition = transform.Position + motion.Velocity * seconds;
 
-		// check for a potential collision against all bounds
+		// Check for a potential collision against all bounds
 		for (auto bound : collision.Bounds)
 		{
 			const sf::Vector3f l(bound.first.x, bound.first.y, bound.second - transform.Radius);
@@ -30,28 +30,28 @@ void MovementSystem::Update(const sf::Time& dt)
 
 			const auto distance = VectorMath::dot(p1, l);
 
-			// we have an intersection between circle and boundary
+			// We have an intersection between circle and boundary
 			if (distance <= 0.f)
 			{
 				const sf::Vector3f p0(transform.Position.x, transform.Position.y, 1.f);
 				const sf::Vector3f v(motion.Velocity.x, motion.Velocity.y, 0.f);
 
-				// calculate the exact time of collision
+				// Calculate the exact time of collision
 				const auto t = -VectorMath::dot(l, p0) / VectorMath::dot(l, v);
 
-				// move the circle forward until it collides
+				// Move the circle forward until it collides
 				transform.Position += motion.Velocity * t;
 
-				// calculate remaining time
+				// Calculate remaining time
 				seconds -= t;
 
-				// invert the movement direction
+				// Invert the movement direction
 				const auto reverse = -motion.Velocity;
 
-				// calculate the reflection vector and take it as the new velocity
+				// Calculate the reflection vector and take it as the new velocity
 				motion.Velocity = 2.f * VectorMath::dot(bound.first, reverse) * bound.first - reverse;
 
-				// for the remaining time, move into the new direction
+				// For the remaining time, move into the new direction
 				nextPosition = transform.Position + motion.Velocity * std::max(seconds, 0.f);
 
 				break;

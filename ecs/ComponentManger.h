@@ -12,7 +12,7 @@ public:
 	template<typename T>
 	void RegisterComponent()
 	{
-		// Create a ComponentArray pointer and add it to the component arrays map
+		// Create a ComponentArray pointer and add it to the component array
 		mComponentArrays[T::Id] = std::make_shared<ComponentArray<T>>();
 	}
 
