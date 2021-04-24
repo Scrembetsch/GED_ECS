@@ -4,5 +4,6 @@
 
 struct Motion
 {
+	static const ComponentType Id = Component::EMotion;
 	sf::Vector2f Velocity;
 };

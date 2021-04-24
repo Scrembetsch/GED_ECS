@@ -162,6 +162,7 @@
     <ClCompile Include="RandomNumberGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentArray.h" />
     <ClInclude Include="ComponentManger.h" />
     <ClInclude Include="Coordinatorh.h" />

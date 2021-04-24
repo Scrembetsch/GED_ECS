@@ -18,11 +18,13 @@ void RenderCircleSystem::Render(sf::RenderWindow& window)
 	const sf::Vector2f uvBr(textureSize, textureSize);
 	const sf::Vector2f uvBl(0.f, textureSize);
 
+	// write the vertices (position, color, texture coordinates)
+	sf::Vertex vertices[Sprite::NumVertices];
+
 	for (const auto& entity : mEntities)
 	{
 		const auto& transform = gCoordinator.GetComponent<Transform>(entity);
 		const auto& sprite = gCoordinator.GetComponent<Sprite>(entity);
-
 
 		// generate the corner coordinates
 		const sf::Vector2f tl(transform.Position.x - transform.Radius, transform.Position.y - transform.Radius);
@@ -30,16 +32,13 @@ void RenderCircleSystem::Render(sf::RenderWindow& window)
 		const sf::Vector2f bl(transform.Position.x - transform.Radius, transform.Position.y + transform.Radius);
 		const sf::Vector2f br(transform.Position.x + transform.Radius, transform.Position.y + transform.Radius);
 
-		// write the vertices (position, color, texture coordinates)
-		sf::Vertex vertices[sprite.NumVertices];
-
 		// array pointer for quick iteration
 		auto* v = vertices;
 
-		*v++ = sf::Vertex(tl, sprite.Color, uvTl);
-		*v++ = sf::Vertex(tr, sprite.Color, uvTr);
-		*v++ = sf::Vertex(br, sprite.Color, uvBr);
-		*v++ = sf::Vertex(bl, sprite.Color, uvBl);
+		*v= sf::Vertex(tl, sprite.Color, uvTl);
+		*++v = sf::Vertex(tr, sprite.Color, uvTr);
+		*++v = sf::Vertex(br, sprite.Color, uvBr);
+		*++v = sf::Vertex(bl, sprite.Color, uvBl);
 
 		// draw using the circle texture
 		window.draw(vertices, sprite.NumVertices, sf::Quads, &texture);
