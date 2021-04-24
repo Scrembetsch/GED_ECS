@@ -7,6 +7,6 @@
 
 struct Collision
 {
-	static const ComponentType Id = Component::ECollision;
+	static const Component Id = Component::ECollision;
 	std::vector<std::pair<sf::Vector2f, float>> Bounds;
 };

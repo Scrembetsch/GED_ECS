@@ -5,7 +5,7 @@
 struct Transform
 {
 
-	static const ComponentType Id = Component::ETransform;
+	static const Component Id = Component::ETransform;
 
 	sf::Vector2f Position;
 	float Radius;

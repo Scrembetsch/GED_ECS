@@ -149,14 +149,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MovingCircleEntity.cpp" />
-    <ClCompile Include="CircleEntityGenerator.cpp" />
     <ClCompile Include="ColorPicker.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovementSystem.cpp" />
     <ClCompile Include="RenderCircleSystem.cpp" />
     <ClCompile Include="RenderTextSystem.cpp" />
-    <ClCompile Include="StatsEntity.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="VectorMath.cpp" />
     <ClCompile Include="RandomNumberGenerator.cpp" />
@@ -167,17 +164,14 @@
     <ClInclude Include="ComponentManger.h" />
     <ClInclude Include="Coordinatorh.h" />
     <ClInclude Include="CollisionComponent.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="RenderTextSystem.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="MotionComponent.h" />
     <ClInclude Include="EntityManager.h" />
-    <ClInclude Include="MovingCircleEntity.h" />
-    <ClInclude Include="CircleEntityGenerator.h" />
     <ClInclude Include="ColorPicker.h" />
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="StatsEntity.h" />
     <ClInclude Include="SystemManager.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="MovementSystem.h" />

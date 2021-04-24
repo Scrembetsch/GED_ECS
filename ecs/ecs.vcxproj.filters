@@ -11,15 +11,6 @@
     <ClCompile Include="VectorMath.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
-    <ClCompile Include="CircleEntityGenerator.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingCircleEntity.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="StatsEntity.cpp">
-      <Filter>Entities</Filter>
-    </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Helpers</Filter>
     </ClCompile>
@@ -34,9 +25,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Entities">
-      <UniqueIdentifier>{11fe306e-40cf-473b-be82-fc2969412a17}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Helpers">
       <UniqueIdentifier>{27002b94-2cb3-4378-a4f8-79177b7c372b}</UniqueIdentifier>
     </Filter>
@@ -51,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
     <ClInclude Include="ColorPicker.h">
       <Filter>Helpers</Filter>
     </ClInclude>
@@ -62,15 +47,6 @@
     </ClInclude>
     <ClInclude Include="VectorMath.h">
       <Filter>Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleEntityGenerator.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingCircleEntity.h">
-      <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="StatsEntity.h">
-      <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Helpers</Filter>
@@ -120,6 +96,9 @@
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

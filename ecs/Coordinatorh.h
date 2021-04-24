@@ -71,7 +71,7 @@ public:
 	}
 
 	template<typename T>
-	ComponentType GetComponentType()
+	Component GetComponentType()
 	{
 		return mComponentManager->GetComponentType<T>();
 	}

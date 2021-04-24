@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Types.h"
-#include <array>
+#include "Helper.h"
+#include <vector>
 #include <cassert>
-#include <unordered_map>
 
 // An interface is needed so that the ComponentManager
 // can tell a generic ComponentArray that an entity has been destroyed
@@ -22,39 +22,51 @@ class ComponentArray : public IComponentArray
 public:
     void InsertData(Entity entity, T component)
     {
-        //assert(mEntityToIndexMap.find(entity) == mEntityToIndexMap.end() && "Component added to same entity more than once.");
+        assert(!Helper::find(mEntityToIndexMap, entity) && "Component added to same entity more than once.");
 
         // Put new entry at the end and update the maps
         size_t newIndex = mSize;
+        if (mEntityToIndexMap.size() <= entity)
+        {
+            mEntityToIndexMap.resize(entity + 1);
+        }
         mEntityToIndexMap[entity] = newIndex;
-        //mIndexToEntityMap[newIndex] = entity;
+        if (mIndexToEntityMap.size() <= newIndex)
+        {
+            mIndexToEntityMap.resize(newIndex + 1);
+        }
+        mIndexToEntityMap[newIndex] = entity;
+        if (mComponentArray.size() <= newIndex)
+        {
+            mComponentArray.resize(newIndex + 1);
+        }
         mComponentArray[newIndex] = component;
         ++mSize;
     }
 
     void RemoveData(Entity entity)
     {
-        //assert(mEntityToIndexMap.find(entity) != mEntityToIndexMap.end() && "Removing non-existent component.");
+        assert(!Helper::find(mEntityToIndexMap, entity) && "Removing non-existent component.");
 
         // Copy element at the end into deleted element's place to maintain density
-        //size_t indexOfRemovedEntity = mEntityToIndexMap[entity];
-        //size_t indexOfLastElement = mSize - 1;
-        //mComponentArray[indexOfRemovedEntity] = mComponentArray[indexOfLastElement];
+        size_t indexOfRemovedEntity = mEntityToIndexMap[entity];
+        size_t indexOfLastElement = mSize - 1;
+        mComponentArray[indexOfRemovedEntity] = mComponentArray[indexOfLastElement];
 
-        //// Update map to point to moved spot
-        //Entity entityOfLastElement = mIndexToEntityMap[indexOfLastElement];
-        //mEntityToIndexMap[entityOfLastElement] = indexOfRemovedEntity;
-        //mIndexToEntityMap[indexOfRemovedEntity] = entityOfLastElement;
+        // Update map to point to moved spot
+        Entity entityOfLastElement = mIndexToEntityMap[indexOfLastElement];
+        mEntityToIndexMap[entityOfLastElement] = indexOfRemovedEntity;
+        mIndexToEntityMap[indexOfRemovedEntity] = entityOfLastElement;
 
-        //mEntityToIndexMap.erase(entity);
-        //mIndexToEntityMap.erase(indexOfLastElement);
+        mEntityToIndexMap.erase(mEntityToIndexMap.begin() + entity);
+        mIndexToEntityMap.erase(mIndexToEntityMap.begin() + indexOfLastElement);
 
         --mSize;
     }
 
     T& GetData(Entity entity)
     {
-        //assert(mEntityToIndexMap.find(entity) != mEntityToIndexMap.end() && "Retrieving non-existent component.");
+        assert(!Helper::find(mEntityToIndexMap, entity) && "Retrieving non-existent component.");
 
         // Return a reference to the entity's component
         return mComponentArray[mEntityToIndexMap[entity]];
@@ -62,28 +74,21 @@ public:
 
     void EntityDestroyed(Entity entity) override
     {
-        //if (mEntityToIndexMap.find(entity) != mEntityToIndexMap.end())
-        //{
-        //    // Remove the entity's component if it existed
-        //    RemoveData(entity);
-        //}
+        if (Helper::find(mEntityToIndexMap, entity))
+        {
+            // Remove the entity's component if it existed
+            RemoveData(entity);
+        }
     }
 
 private:
     // The packed array of components (of generic type T),
-    // set to a specified maximum amount, matching the maximum number
-    // of entities allowed to exist simultaneously, so that each entity
-    // has a unique spot.
-    std::array<T, MAX_ENTITIES> mComponentArray{};
+    std::vector<T> mComponentArray;
 
-    size_t mEntityToIndexMap[MAX_ENTITIES];
-
-    //// Map from an entity ID to an array index.
-    //std::unordered_map<Entity, size_t> mEntityToIndexMap{};
-
-    //// Map from an array index to an entity ID.
-    //std::unordered_map<size_t, Entity> mIndexToEntityMap{};
+    std::vector<size_t> mEntityToIndexMap;
+    std::vector<Entity> mIndexToEntityMap;
 
     // Total size of valid entries in the array.
-    size_t mSize{};
+    size_t mSize = 0;
+
 };

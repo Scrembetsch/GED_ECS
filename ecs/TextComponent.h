@@ -4,7 +4,7 @@
 
 struct Text
 {
-	static const ComponentType Id = Component::EText;
+	static const Component Id = Component::EText;
 	sf::Font Font;
 	sf::Text Stats;
 };

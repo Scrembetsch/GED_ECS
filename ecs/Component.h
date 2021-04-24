@@ -8,5 +8,5 @@ enum Component
 	EText,
 	ETransform,
 
-	Num
+	NumTypes
 };
