@@ -7,7 +7,8 @@ int main()
 {
     const unsigned int windowWidth = 1024;
     const unsigned int windowHeight = 768;
-    const unsigned int numEntities = 100000;
+    // const unsigned int numEntities = 52500;  // Anja
+    const unsigned int numEntities = 170000;    // Harald
     const sf::Rect<float> bounds(0.f, 0.f, windowWidth, windowHeight);
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "ECS Moving Circles");
